@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Category;
+use App\Models\Thread;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -13,8 +14,10 @@ class ShowThreads extends Component
     public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $categories = Category::get();
+        $threads = Thread::latest()->get();
         return view('livewire.show-threads', [
-            'categories' => $categories
+            'categories' => $categories,
+            'threads' => $threads,
         ]);
     }
 }

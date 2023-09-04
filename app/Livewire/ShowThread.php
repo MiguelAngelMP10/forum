@@ -3,6 +3,9 @@
 namespace App\Livewire;
 
 use App\Models\Thread;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Livewire\Component;
 
 class ShowThread extends Component
@@ -25,8 +28,10 @@ class ShowThread extends Component
         $this->body = '';
     }
 
-    public function render()
+    public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('livewire.show-thread');
+        return view('livewire.show-thread', [
+            'replies' => $this->thread->replies()->get()
+        ]);
     }
 }

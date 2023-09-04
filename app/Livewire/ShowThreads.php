@@ -4,21 +4,30 @@ namespace App\Livewire;
 
 use App\Models\Category;
 use App\Models\Thread;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
+
 use Livewire\Component;
 
 class ShowThreads extends Component
 {
-    public string $search = '';
+    public $search = '';
+    public $category = '';
 
-    public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function filterByCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    public function render()
     {
         $categories = Category::get();
 
         $threads = Thread::query();
         $threads->where('title', 'like', "%$this->search%");
+
+        if ($this->category) {
+            $threads->where('category_id', $this->category);
+        }
+
         $threads->withCount('replies');
         $threads->latest();
 

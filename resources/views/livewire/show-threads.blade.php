@@ -1,15 +1,13 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-10 py-12">
     <div class="w-64">
-        <a href=""
-           class="block w-full py-4 mb-10 bg-gradient-to-r from-blue-600 to-blue-700 hover:to-blue-600 text-white/90 font-bold text-xs text-center rounded-md">
+        <a href="" class="block w-full py-4 mb-10 bg-gradient-to-r from-blue-600 to-blue-700 hover:to-blue-600 text-white/90 font-bold text-xs text-center rounded-md">
             Preguntar
         </a>
 
         <ul>
             @foreach($categories as $category)
                 <li class="mb-2">
-                    <a href=""
-                       class="p-2 rounded-md flex bg-slate-800 items-center gap-2 text-white/60 hover:text-white font-semibold text-xs capitalize">
+                    <a href="" class="p-2 rounded-md flex bg-slate-800 items-center gap-2 text-white/60 hover:text-white font-semibold text-xs capitalize">
                         <span class="w-2 h-2 rounded-full" style="background-color: {{ $category->color }};"></span>
                         {{ $category->name }}
                     </a>
@@ -17,8 +15,7 @@
             @endforeach
 
             <li>
-                <a href=""
-                   class="p-2 rounded-md flex bg-slate-800 items-center gap-2 text-white/60 hover:text-white font-semibold text-xs">
+                <a href="" class="p-2 rounded-md flex bg-slate-800 items-center gap-2 text-white/60 hover:text-white font-semibold text-xs">
                     <span class="w-2 h-2 rounded-full" style="background-color: #000;"></span>
                     Todos los resultados
                 </a>
@@ -26,7 +23,14 @@
         </ul>
     </div>
     <div class="w-full">
-        <!-- formulario -->
+        <form class="mb-4">
+            <input
+                    type="text"
+                    placeholder="// ..."
+                    class="bg-slate-800 border-0 rounded-md w-full p-3 text-white/60 text-xs"
+                    wire:model.live="search"
+            >
+        </form>
 
         @foreach($threads as $thread)
             <div class="rounded-md bg-gradient-to-r from-slate-800 to-slate-900 hover:to-slate-800 mb-4">
@@ -53,10 +57,8 @@
                             <span class="text-white/90">{{ $thread->created_at->diffForHumans() }}</span>
                         </span>
                             <span class="flex items-center gap-1 text-slate-700">
-                            <svg fill="currentColor" class="h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                                 aria-hidden="true">
-                                <path clip-rule="evenodd" fill-rule="evenodd"
-                                      d="M5.337 21.718a6.707 6.707 0 01-.533-.074.75.75 0 01-.44-1.223 3.73 3.73 0 00.814-1.686c.023-.115-.022-.317-.254-.543C3.274 16.587 2.25 14.41 2.25 12c0-5.03 4.428-9 9.75-9s9.75 3.97 9.75 9c0 5.03-4.428 9-9.75 9-.833 0-1.643-.097-2.417-.279a6.721 6.721 0 01-4.246.997z"></path>
+                            <svg fill="currentColor" class="h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path clip-rule="evenodd" fill-rule="evenodd" d="M5.337 21.718a6.707 6.707 0 01-.533-.074.75.75 0 01-.44-1.223 3.73 3.73 0 00.814-1.686c.023-.115-.022-.317-.254-.543C3.274 16.587 2.25 14.41 2.25 12c0-5.03 4.428-9 9.75-9s9.75 3.97 9.75 9c0 5.03-4.428 9-9.75 9-.833 0-1.643-.097-2.417-.279a6.721 6.721 0 01-4.246.997z"></path>
                             </svg>
 
                             {{ $thread->replies_count }}

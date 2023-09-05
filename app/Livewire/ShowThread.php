@@ -31,7 +31,10 @@ class ShowThread extends Component
     public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.show-thread', [
-            'replies' => $this->thread->replies()->get()
+            'replies' => $this->thread
+                ->replies()
+                ->whereNull('reply_id')
+                ->get()
         ]);
     }
 }

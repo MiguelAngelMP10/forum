@@ -11,6 +11,16 @@
                 <p class="text-white/60 text-xs">
                     {{ $reply->body }}
                 </p>
+                @if ($is_creating)
+                    <form wire:submit.prevent="postChild" class="mt-4">
+                        <input
+                                type="text"
+                                placeholder="Escribe una respuesta"
+                                class="bg-slate-800 border-1 border-slate-900 rounded-md w-full p-3 text-white/60 text-xs"
+                                wire:model.defer="body"
+                        >
+                    </form>
+                @endif
                 <p class="mt-4 text-white/60 text-xs flex gap-2 justify-end">
                     <a href="" class="hover:text-white">Responder</a>
                     <a href="" class="hover:text-white">Editar</a>

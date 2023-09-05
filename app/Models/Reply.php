@@ -13,6 +13,7 @@ class Reply extends Model
 
     protected $fillable = [
         'thread_id',
+        'reply_id',
         'body'
     ];
 
@@ -20,7 +21,10 @@ class Reply extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    public function thread(): BelongsTo
+    {
+        return $this->belongsTo(Thread::class);
+    }
     public function replies(): HasMany
     {
         return $this->hasMany(Reply::class);
